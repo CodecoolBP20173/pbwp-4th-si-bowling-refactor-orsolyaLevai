@@ -1,6 +1,6 @@
 def scoring_when_all_pins_down(game, result, frame, total_frames, max_pins_number, roll_index):
     """
-    Scores when all pins are down
+    Scoring when all pins are down and the game isn't in the last round.
 
     Args:
     game -> string (1-9, x, -, /)
