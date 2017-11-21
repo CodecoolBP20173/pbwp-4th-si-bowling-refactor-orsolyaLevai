@@ -10,7 +10,7 @@ def scoring_when_all_pins_down(game, result, frame, total_frames, max_pins_numbe
     return result
 
 
-def all_pins_down_in_the_first_roll(in_first_half, frame, current_roll_points):
+def set_all_pins_down_in_the_first_roll(in_first_half, frame, current_roll_points):
     if in_first_half:
         in_first_half = False
     else:
@@ -58,7 +58,7 @@ def score(game):
             result = scoring_when_all_pins_down(game, result, frame, total_frames, max_pins_number, roll_index)
 
         last_frame = get_value(game[roll_index])
-        frame, in_first_half = all_pins_down_in_the_first_roll(in_first_half, frame, game[roll_index])
+        frame, in_first_half = set_all_pins_down_in_the_first_roll(in_first_half, frame, game[roll_index])
 
     return result
 
