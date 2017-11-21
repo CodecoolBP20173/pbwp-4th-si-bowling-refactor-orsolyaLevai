@@ -3,6 +3,7 @@ def score(game):
     frame = 1
     in_first_half = True
     total_frames = 10
+    max_points = 10
 
     for i in range(len(game)):
         if is_a_spare(game[i]):
@@ -10,22 +11,21 @@ def score(game):
         else:
             result += get_value(game[i])
 
-        if frame < total_frames and get_value(game[i]) == 10:
+        if frame < total_frames and get_value(game[i]) == max_points:
             if is_a_spare(game[i]):
                 result += get_value(game[i+1])
             elif is_a_strike(game[i]):
                 result += get_value(game[i+1])
                 if is_a_spare(game[i+2]):
-                    result += 10 - get_value(game[i+1])
+                    result += max_points - get_value(game[i+1])
                 else:
                     result += get_value(game[i+2])
         last_frame = get_value(game[i])
 
-        if not in_first_half:
-            frame += 1
         if in_first_half:
             in_first_half = False
         else:
+            frame += 1
             in_first_half = True
 
         if is_a_strike(game[i]):
