@@ -1,26 +1,30 @@
+def scoring_when_all_pins_down(game, result, frame, total_frames, max_pins_number):
+    return result
+
 def score(game):
     result = 0
     frame = 1
     in_first_half = True
     total_frames = 10
-    max_points = 10
+    max_pins_number = 10
 
-    for i in range(len(game)):
-        if is_a_spare(game[i]):
+    for roll_index in range(len(game)):
+        if is_a_spare(game[roll_index]):
             result += total_frames - last_frame
         else:
-            result += get_value(game[i])
+            result += get_value(game[roll_index])
 
-        if frame < total_frames and get_value(game[i]) == max_points:
-            if is_a_spare(game[i]):
-                result += get_value(game[i+1])
-            elif is_a_strike(game[i]):
-                result += get_value(game[i+1])
-                if is_a_spare(game[i+2]):
-                    result += max_points - get_value(game[i+1])
+        if frame < total_frames and get_value(game[roll_index]) == max_pins_number:
+            if is_a_spare(game[roll_index]):
+                result += get_value(game[roll_index+1])
+            elif is_a_strike(game[roll_index]):
+                result += get_value(game[roll_index+1])
+                if is_a_spare(game[roll_index+2]):
+                    result += max_pins_number - get_value(game[roll_index+1])
                 else:
-                    result += get_value(game[i+2])
-        last_frame = get_value(game[i])
+                    result += get_value(game[roll_index+2])
+        
+        last_frame = get_value(game[roll_index])
 
         if in_first_half:
             in_first_half = False
@@ -28,7 +32,7 @@ def score(game):
             frame += 1
             in_first_half = True
 
-        if is_a_strike(game[i]):
+        if is_a_strike(game[roll_index]):
             in_first_half = True
             frame += 1
 
