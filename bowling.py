@@ -29,14 +29,14 @@ def score(game):
     return result
 
 
-def is_a_number_between_one_and_nine(char):
+def is_a_score_between_one_and_nine(char):
     return char == '1' or char == '2' or char == '3' or \
        char == '4' or char == '5' or char == '6' or \
        char == '7' or char == '8' or char == '9'
 
 
 def get_value(char):
-    if is_a_number_between_one_and_nine(char):
+    if is_a_score_between_one_and_nine(char):
         return int(char)
     elif char == 'X' or char == 'x':
         return 10
