@@ -1,5 +1,14 @@
-def scoring_when_all_pins_down(game, result, frame, total_frames, max_pins_number):
+def scoring_when_all_pins_down(game, result, frame, total_frames, max_pins_number, roll_index):
+    if is_a_spare(game[roll_index]):
+        result += get_value(game[roll_index+1])
+    elif is_a_strike(game[roll_index]):
+        result += get_value(game[roll_index+1])
+        if is_a_spare(game[roll_index+2]):
+            result += max_pins_number - get_value(game[roll_index+1])
+        else:
+            result += get_value(game[roll_index+2])
     return result
+
 
 def score(game):
     result = 0
@@ -15,14 +24,7 @@ def score(game):
             result += get_value(game[roll_index])
 
         if frame < total_frames and get_value(game[roll_index]) == max_pins_number:
-            if is_a_spare(game[roll_index]):
-                result += get_value(game[roll_index+1])
-            elif is_a_strike(game[roll_index]):
-                result += get_value(game[roll_index+1])
-                if is_a_spare(game[roll_index+2]):
-                    result += max_pins_number - get_value(game[roll_index+1])
-                else:
-                    result += get_value(game[roll_index+2])
+            result = scoring_when_all_pins_down(game, result, frame, total_frames, max_pins_number, roll_index)
         
         last_frame = get_value(game[roll_index])
 
