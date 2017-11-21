@@ -35,14 +35,26 @@ def is_a_score_between_one_and_nine(char):
        char == '7' or char == '8' or char == '9'
 
 
+def is_a_strike(char):
+    return char == 'X' or char == 'x'
+
+
+def is_a_spare(char):
+    return char == '/'
+
+
+def is_a_miss(char):
+    return char == '-'
+
+
 def get_value(char):
     if is_a_score_between_one_and_nine(char):
         return int(char)
-    elif char == 'X' or char == 'x':
+    elif is_a_strike(char):
         return 10
-    elif char == '/':
+    elif is_a_spare(char):
         return 10
-    elif char == '-':
+    elif is_a_miss(char):
         return 0
     else:
         raise ValueError()
