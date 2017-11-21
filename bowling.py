@@ -51,7 +51,7 @@ def set_all_pins_down_in_the_first_roll(in_first_half, frame, current_roll_point
 
 def is_a_score_between_one_and_nine(char):
     """
-    Decides the character is a number between 1 and 9.
+    Decides if the character is a number between 1 and 9.
 
     Args:
     char -> string
