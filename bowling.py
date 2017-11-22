@@ -147,9 +147,7 @@ def get_value(char):
     """
     if is_a_score_between_one_and_nine(char):
         return int(char)
-    elif is_a_strike(char):
-        return 10
-    elif is_a_spare(char):
+    elif is_a_strike(char) or is_a_spare(char):
         return 10
     elif is_a_miss(char):
         return 0
